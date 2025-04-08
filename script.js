@@ -1,6 +1,18 @@
 const clickButton = document.getElementById('clickButton');
 const scoreDisplay = document.getElementById('score');
+const clockDisplay = document.getElementById('clock'); // Get the clock element
 let score = 0;
+
+function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
 
 // Function to save the game state
 function saveGame() {
@@ -20,6 +32,7 @@ function loadGame() {
 
 // Load the game state when the page loads
 loadGame();
+updateClock(); // Initial call to display the clock immediately
 
 // Function to update the score based on time
 function decreaseScore() {
