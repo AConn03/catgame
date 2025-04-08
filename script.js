@@ -47,7 +47,7 @@ function decreaseScore() {
 setInterval(decreaseScore, 1000);
 
 clickButton.addEventListener('click', () => {
-    score++;
+    score += 1;
     scoreDisplay.textContent = score;
     saveGame(); // Save the game state after a click
 });
