@@ -36,7 +36,7 @@ body {
 }
 
 .progress-bar-container {
-    width: 200px; /* Adjust width as needed */
+    width: 800px; /* Adjust width as needed */
     height: 20px;
     background-color: #ddd;
     border-radius: 5px;
