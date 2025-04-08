@@ -1,7 +1,7 @@
 const clickButton = document.getElementById('clickButton');
 const scoreDisplay = document.getElementById('score');
 const clockDisplay = document.getElementById('clock');
-const lastVisitDisplay = document.createElement('div'); // Create a div for the pop-up
+const lastVisitDisplay = document.createElement('div');
 lastVisitDisplay.style.position = 'fixed';
 lastVisitDisplay.style.top = '50%';
 lastVisitDisplay.style.left = '50%';
@@ -10,11 +10,12 @@ lastVisitDisplay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
 lastVisitDisplay.style.color = 'white';
 lastVisitDisplay.style.padding = '20px';
 lastVisitDisplay.style.borderRadius = '10px';
-lastVisitDisplay.style.zIndex = '1000'; // Ensure it's on top
-lastVisitDisplay.style.display = 'none'; // Hidden by default
+lastVisitDisplay.style.zIndex = '1000';
+lastVisitDisplay.style.display = 'none';
 document.body.appendChild(lastVisitDisplay);
 
 let score = 0;
+const scoreLossPerSecond = 1; // Define how many points are lost per second
 
 function updateClock() {
     const now = new Date();
@@ -28,7 +29,7 @@ setInterval(updateClock, 1000);
 
 function saveGame() {
     localStorage.setItem('clickerGameScore', score);
-    localStorage.setItem('lastVisitTime', Date.now()); // Save the current timestamp
+    localStorage.setItem('lastVisitTime', Date.now());
     console.log('Game saved. Score:', score, 'Last Visit:', localStorage.getItem('lastVisitTime'));
 }
 
@@ -38,12 +39,17 @@ function loadGame() {
 
     if (savedScore !== null) {
         score = parseInt(savedScore);
-        scoreDisplay.textContent = score;
-        console.log('Game loaded. Score:', score, 'Last Visit:', lastVisitTime);
 
         if (lastVisitTime !== null) {
             const timeDifference = Date.now() - parseInt(lastVisitTime);
             const secondsGone = Math.floor(timeDifference / 1000);
+            const pointsToLose = secondsGone * scoreLossPerSecond;
+
+            if (score > 0) {
+                score = Math.max(0, score - pointsToLose); // Ensure score doesn't go below 0
+                console.log('Points lost while away:', pointsToLose);
+            }
+
             const minutesGone = Math.floor(secondsGone / 60);
             const hoursGone = Math.floor(minutesGone / 60);
 
@@ -59,11 +65,12 @@ function loadGame() {
             lastVisitDisplay.textContent = goneMessage;
             lastVisitDisplay.style.display = 'block';
 
-            // Make the pop-up disappear after a few seconds (e.g., 5 seconds)
             setTimeout(() => {
                 lastVisitDisplay.style.display = 'none';
             }, 5000);
         }
+        scoreDisplay.textContent = score; // Update the score display after loading and potential point loss
+        console.log('Game loaded. Score:', score, 'Last Visit:', lastVisitTime);
     }
 }
 
@@ -78,7 +85,8 @@ function decreaseScore() {
     }
 }
 
-setInterval(decreaseScore, 1000);
+// We can remove the setInterval for decreaseScore here, as the point loss happens on load
+// setInterval(decreaseScore, 1000);
 
 clickButton.addEventListener('click', () => {
     score += 5;
