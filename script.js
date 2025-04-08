@@ -85,8 +85,7 @@ function decreaseScore() {
     }
 }
 
-// We can remove the setInterval for decreaseScore here, as the point loss happens on load
-// setInterval(decreaseScore, 1000);
+setInterval(decreaseScore, 1000);
 
 clickButton.addEventListener('click', () => {
     score += 1;
