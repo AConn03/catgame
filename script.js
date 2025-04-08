@@ -79,7 +79,7 @@ updateClock();
 
 function decreaseScore() {
     if (score > 0) {
-        score--;
+        score -= 1;
         scoreDisplay.textContent = score;
         saveGame();
     }
