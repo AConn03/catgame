@@ -3,12 +3,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0; /* Reset default body margin */
+}
+
+#clock {
+    position: fixed; /* Keep it in a fixed position relative to the viewport */
+    top: 10px;      /* Adjust top margin as needed */
+    right: 10px;     /* Adjust right margin as needed */
+    font-size: 1em;  /* Adjust font size as needed */
+    background-color: #f0f0f0; /* Optional background */
+    padding: 5px;           /* Optional padding */
+    border-radius: 5px;      /* Optional rounded corners */
 }
 
 #clickButton {
     padding: 15px 30px;
     font-size: 1.2em;
     cursor: pointer;
+    margin-bottom: 20px; /* Add some space below the button */
 }
 
 #score {
