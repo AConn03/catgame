@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#clickButton {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#score {
+    font-weight: bold;
+}
