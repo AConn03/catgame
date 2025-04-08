@@ -1,6 +1,19 @@
 const clickButton = document.getElementById('clickButton');
 const scoreDisplay = document.getElementById('score');
-const clockDisplay = document.getElementById('clock'); // Get the clock element
+const clockDisplay = document.getElementById('clock');
+const lastVisitDisplay = document.createElement('div'); // Create a div for the pop-up
+lastVisitDisplay.style.position = 'fixed';
+lastVisitDisplay.style.top = '50%';
+lastVisitDisplay.style.left = '50%';
+lastVisitDisplay.style.transform = 'translate(-50%, -50%)';
+lastVisitDisplay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+lastVisitDisplay.style.color = 'white';
+lastVisitDisplay.style.padding = '20px';
+lastVisitDisplay.style.borderRadius = '10px';
+lastVisitDisplay.style.zIndex = '1000'; // Ensure it's on top
+lastVisitDisplay.style.display = 'none'; // Hidden by default
+document.body.appendChild(lastVisitDisplay);
+
 let score = 0;
 
 function updateClock() {
@@ -11,46 +24,66 @@ function updateClock() {
     clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-// Update the clock every second
 setInterval(updateClock, 1000);
 
-// Function to save the game state
 function saveGame() {
     localStorage.setItem('clickerGameScore', score);
-    console.log('Game saved. Score:', score); // For debugging
+    localStorage.setItem('lastVisitTime', Date.now()); // Save the current timestamp
+    console.log('Game saved. Score:', score, 'Last Visit:', localStorage.getItem('lastVisitTime'));
 }
 
-// Function to load the game state
 function loadGame() {
     const savedScore = localStorage.getItem('clickerGameScore');
+    const lastVisitTime = localStorage.getItem('lastVisitTime');
+
     if (savedScore !== null) {
         score = parseInt(savedScore);
         scoreDisplay.textContent = score;
-        console.log('Game loaded. Score:', score); // For debugging
+        console.log('Game loaded. Score:', score, 'Last Visit:', lastVisitTime);
+
+        if (lastVisitTime !== null) {
+            const timeDifference = Date.now() - parseInt(lastVisitTime);
+            const secondsGone = Math.floor(timeDifference / 1000);
+            const minutesGone = Math.floor(secondsGone / 60);
+            const hoursGone = Math.floor(minutesGone / 60);
+
+            let goneMessage = 'You\'ve been gone for ';
+            if (hoursGone > 0) {
+                goneMessage += `${hoursGone} hours, `;
+            }
+            if (minutesGone % 60 > 0) {
+                goneMessage += `${minutesGone % 60} minutes, `;
+            }
+            goneMessage += `${secondsGone % 60} seconds.`;
+
+            lastVisitDisplay.textContent = goneMessage;
+            lastVisitDisplay.style.display = 'block';
+
+            // Make the pop-up disappear after a few seconds (e.g., 5 seconds)
+            setTimeout(() => {
+                lastVisitDisplay.style.display = 'none';
+            }, 5000);
+        }
     }
 }
 
-// Load the game state when the page loads
 loadGame();
-updateClock(); // Initial call to display the clock immediately
+updateClock();
 
-// Function to update the score based on time
 function decreaseScore() {
     if (score > 0) {
         score--;
         scoreDisplay.textContent = score;
-        saveGame(); // Save the game state after the score changes
+        saveGame();
     }
 }
 
-// Set up the timer to decrease the score every 1000 milliseconds (1 second)
 setInterval(decreaseScore, 1000);
 
 clickButton.addEventListener('click', () => {
-    score += 1;
+    score += 5;
     scoreDisplay.textContent = score;
-    saveGame(); // Save the game state after a click
+    saveGame();
 });
 
-// Save the game state periodically (optional, but good for backups)
-setInterval(saveGame, 5000); // Save every 5 seconds
+setInterval(saveGame, 5000);
