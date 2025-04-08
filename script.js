@@ -89,7 +89,7 @@ function decreaseScore() {
 // setInterval(decreaseScore, 1000);
 
 clickButton.addEventListener('click', () => {
-    score += 5;
+    score += 1;
     scoreDisplay.textContent = score;
     saveGame();
 });
