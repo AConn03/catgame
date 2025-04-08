@@ -1,4 +1,3 @@
-const clickButton = document.getElementById('clickButton');
 const scoreDisplay = document.getElementById('score');
 const clockDisplay = document.getElementById('clock');
 const lastVisitDisplay = document.createElement('div');
@@ -14,6 +13,10 @@ lastVisitDisplay.style.zIndex = '1000';
 lastVisitDisplay.style.display = 'none';
 document.body.appendChild(lastVisitDisplay);
 
+const clickButton = document.getElementById('clickButton');
+let score = 0;
+const scoreLossPerSecond = 1;
+
 const clicker2Button = document.getElementById('clicker2Button');
 const clicker2Progress = document.getElementById('clicker2Progress');
 let clicker2Value = 0;
@@ -25,9 +28,6 @@ const clicker3Progress = document.getElementById('clicker3Progress');
 let clicker3Value = 0;
 const clicker3MaxValue = 150;
 const clicker3LossPerSecond = 1; // Adjust the loss rate as needed
-
-let score = 0;
-const scoreLossPerSecond = 1;
 
 function updateClock() {
     const now = new Date();
@@ -120,19 +120,16 @@ function decreaseScore() {
     if (score > 0) {
         score -= scoreLossPerSecond;
         scoreDisplay.textContent = score;
-        saveGame();
     }
     // Decrease Clicker 2 value
     if (clicker2Value > 0) {
         clicker2Value = Math.max(0, clicker2Value - clicker2LossPerSecond);
         updateProgressBar(clicker2Progress, clicker2Value, clicker2MaxValue);
-        saveGame();
     }
     // Decrease Clicker 3 value
     if (clicker3Value > 0) {
         clicker3Value = Math.max(0, clicker3Value - clicker3LossPerSecond);
         updateProgressBar(clicker3Progress, clicker3Value, clicker3MaxValue);
-        saveGame();
     }
 }
 
@@ -141,19 +138,16 @@ setInterval(decreaseScore, 1000);
 clickButton.addEventListener('click', () => {
     score += 5;
     scoreDisplay.textContent = score;
-    saveGame();
 });
 
 clicker2Button.addEventListener('click', () => {
     clicker2Value = Math.min(clicker2Value + 10, clicker2MaxValue);
     updateProgressBar(clicker2Progress, clicker2Value, clicker2MaxValue);
-    saveGame();
 });
 
 clicker3Button.addEventListener('click', () => {
     clicker3Value = Math.min(clicker3Value + 10, clicker3MaxValue);
     updateProgressBar(clicker3Progress, clicker3Value, clicker3MaxValue);
-    saveGame();
 });
 
 setInterval(saveGame, 5000);
