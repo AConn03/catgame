@@ -3,26 +3,50 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0; /* Reset default body margin */
+    margin: 0;
 }
 
 #clock {
-    position: fixed; /* Keep it in a fixed position relative to the viewport */
-    top: 10px;      /* Adjust top margin as needed */
-    right: 10px;     /* Adjust right margin as needed */
-    font-size: 1em;  /* Adjust font size as needed */
-    background-color: #f0f0f0; /* Optional background */
-    padding: 5px;           /* Optional padding */
-    border-radius: 5px;      /* Optional rounded corners */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 1em;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 #clickButton {
     padding: 15px 30px;
     font-size: 1.2em;
     cursor: pointer;
-    margin-bottom: 20px; /* Add some space below the button */
+    margin-bottom: 20px;
 }
 
 #score {
     font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.clicker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container {
+    width: 200px; /* Adjust width as needed */
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: green; /* Adjust color as needed */
+    width: 0%; /* Initial width */
+    border-radius: 5px;
 }
