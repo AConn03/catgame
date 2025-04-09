@@ -31,22 +31,24 @@ const clicker1Button = document.getElementById('clicker1Button');
 const clicker1Progress = document.getElementById('clicker1Progress');
 let clicker1Value = 0;
 const clicker1AddValue = 100;
-const clicker1MaxValue = 200;
-const clicker1LossPerSecond = 0.1;
+const clicker1MaxValue = 1000;
+const clicker1LossPerSecond = 0.01;
 
 const clicker2Button = document.getElementById('clicker2Button');
 const clicker2Progress = document.getElementById('clicker2Progress');
 let clicker2Value = 0;
+const waterValue = 50;
 const clicker2AddValue = 100;
-const clicker2MaxValue = 100;
+const clicker2MaxValue = 1000;
 const clicker2LossPerSecond = 0.1;
 
 const clicker3Button = document.getElementById('clicker3Button');
 const clicker3Progress = document.getElementById('clicker3Progress');
 let clicker3Value = 0;
+const fishValue = 100;
 const clicker3AddValue = 100;
-const clicker3MaxValue = 150;
-const clicker3LossPerSecond = 0.1;
+const clicker3MaxValue = 1000;
+const clicker3LossPerSecond = 0.05;
 
 function updateClock() {
     const now = new Date();
@@ -258,7 +260,8 @@ function makeDraggable(imageElement) {
             
             // Check collision with current fish image
             if (draggableImage2 && isOnTopOf(draggableImage, draggableImage2)) {
-                clicker3Value += 5;
+                clicker3Value += fishValue;
+                clicker2Value += waterValue;
                 console.log("Fish eaten! clicker3Value:", clicker3Value);
                 
                 // Remove old fish
