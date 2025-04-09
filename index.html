@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIWIWI</title>
+    <title>----------</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="clock"></div> <h1>---</h1>
-    <button id="clickButton">Click Me!</button>
-    <p>Score: <span id="score">0</span></p>
+    <div id="clock"></div> 
+    <h1>----------</h1>
+    <h1>Drag the Images!</h1>
+    <!-- Clicker 1 -->
+    <div class="clicker-container">
+        <button id="clicker1Button">Test</button>
+        <div class="progress-bar-container">
+            <div id="clicker1Progress" class="progress-bar"></div>
+        </div>
+    </div>
     
+    <!-- Clicker 2 -->
     <div class="clicker-container">
         <button id="clicker2Button">Water</button>
         <div class="progress-bar-container">
@@ -18,13 +26,24 @@
         </div>
     </div>
 
+    <!-- Clicker 3 -->
     <div class="clicker-container">
         <button id="clicker3Button">Food</button>
         <div class="progress-bar-container">
             <div id="clicker3Progress" class="progress-bar"></div>
         </div>
     </div>
-    
+
+    <!-- Money Display -->
+    <div id="moneyDisplay">Money: $0</div>
+
+    <!-- Draggable Test Image -->
+    <img id="draggableImage" src="images/cat.png" alt="Test Image" class="draggable">
+
+    <!-- Draggable Test 2 Image -->
+    <img id="draggableImage2" src="images/fish.png" alt="Test2 Image" class="draggable">
+
+
     <script src="script.js"></script>
 </body>
 </html>
