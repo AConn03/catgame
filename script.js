@@ -38,7 +38,7 @@ const clicker2Button = document.getElementById('clicker2Button');
 const clicker2Progress = document.getElementById('clicker2Progress');
 let clicker2Value = 0;
 const waterValue = 50;
-const clicker2AddValue = 100;
+const clicker2AddValue = 10;
 const clicker2MaxValue = 1000;
 const clicker2LossPerSecond = 0.1;
 
@@ -46,7 +46,7 @@ const clicker3Button = document.getElementById('clicker3Button');
 const clicker3Progress = document.getElementById('clicker3Progress');
 let clicker3Value = 0;
 const fishValue = 100;
-const clicker3AddValue = 100;
+const clicker3AddValue = 10;
 const clicker3MaxValue = 1000;
 const clicker3LossPerSecond = 0.05;
 
