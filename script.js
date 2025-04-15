@@ -32,7 +32,8 @@ const clicker1Progress = document.getElementById('clicker1Progress');
 let clicker1Value = 0;
 const clicker1AddValue = 100;
 const clicker1MaxValue = 1000;
-const clicker1LossPerSecond = 0.005;
+const clicker1LossPerSecond = 0.02;
+//13.889 hours
 
 const clicker2Button = document.getElementById('clicker2Button');
 const clicker2Progress = document.getElementById('clicker2Progress');
@@ -40,7 +41,8 @@ let clicker2Value = 0;
 const waterValue = 50;
 const clicker2AddValue = 10;
 const clicker2MaxValue = 1000;
-const clicker2LossPerSecond = 0.01;
+const clicker2LossPerSecond = 0.015;
+//18.51 hours
 
 const clicker3Button = document.getElementById('clicker3Button');
 const clicker3Progress = document.getElementById('clicker3Progress');
@@ -48,7 +50,8 @@ let clicker3Value = 0;
 const fishValue = 100;
 const clicker3AddValue = 10;
 const clicker3MaxValue = 1000;
-const clicker3LossPerSecond = 0.015;
+const clicker3LossPerSecond = 0.0175;
+//15.87 hours
 
 function updateClock() {
     const now = new Date();
