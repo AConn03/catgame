@@ -54,6 +54,15 @@ const clicker3LossPerSecond = 0.015;
 //18.51 hours
 
 //Count Fish
+const fishCounterDisplay = document.createElement('div');
+fishCounterDisplay.style.position = 'fixed';
+fishCounterDisplay.style.top = '30px';
+fishCounterDisplay.style.left = '10px';
+fishCounterDisplay.style.color = 'white';
+fishCounterDisplay.style.fontSize = '20px';
+fishCounterDisplay.style.zIndex = '1000';
+fishCounterDisplay.textContent = `Fish: $${fishCounter}`;
+document.body.appendChild(fishCounterDisplay);
 let fishCounter = 0;
 
 function updateClock() {
@@ -87,6 +96,11 @@ function loadGame() {
     if (savedMoney !== null) {
         money = parseInt(savedMoney);
         moneyDisplay.textContent = `Money: $${money}`;
+    }
+
+        if (savedfishCounter !== null) {
+        fishCounter = parseInt(savedfishCounter);
+        fishCounterDisplay.textContent = `Money: $${fishCounter}`;
     }
     
 
@@ -220,6 +234,10 @@ setInterval(() => {
 
     // Update the money display
     moneyDisplay.textContent = `Money: $${money}`;
+}, 1000);
+
+    // Update the money display
+    fishCounterDisplay.textContent = `Fish: $${fishCounter}`;
 }, 1000);
 
 setInterval(saveGame, 5000);
