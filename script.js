@@ -54,6 +54,8 @@ const clicker3LossPerSecond = 0.015;
 //18.51 hours
 
 //Count Fish
+
+let fishCounter = 0;
 const fishCounterDisplay = document.createElement('div');
 fishCounterDisplay.style.position = 'fixed';
 fishCounterDisplay.style.top = '30px';
@@ -63,7 +65,6 @@ fishCounterDisplay.style.fontSize = '20px';
 fishCounterDisplay.style.zIndex = '1000';
 fishCounterDisplay.textContent = `Fish: $${fishCounter}`;
 document.body.appendChild(fishCounterDisplay);
-let fishCounter = 0;
 
 function updateClock() {
     const now = new Date();
@@ -78,7 +79,7 @@ setInterval(updateClock, 1000);
 function saveGame() {
     localStorage.setItem('lastVisitTime', Date.now());
     localStorage.setItem('money', money);
-
+    localStorage.setItem('fishCounter', fishCounter);
     localStorage.setItem('clicker1Value', clicker1Value);
     localStorage.setItem('clicker2Value', clicker2Value);
     localStorage.setItem('clicker3Value', clicker3Value);
@@ -98,9 +99,10 @@ function loadGame() {
         moneyDisplay.textContent = `Money: $${money}`;
     }
 
-        if (savedfishCounter !== null) {
-        fishCounter = parseInt(savedfishCounter);
-        fishCounterDisplay.textContent = `Money: $${fishCounter}`;
+    const savedFishCounter = localStorage.getItem('fishCounter');
+    if (savedFishCounter !== null) {
+        fishCounter = parseInt(savedFishCounter);
+        fishCounterDisplay.textContent = `Fish: ${fishCounter}`; // Removed the $ sign
     }
     
 
@@ -287,6 +289,7 @@ function makeDraggable(imageElement) {
                 clicker3Value += fishValue;
                 clicker2Value += waterValue;
                 fishCounter += 1;
+                fishCounterDisplay.textContent = `Fish: ${fishCounter}`;
                 console.log("Fish eaten! clicker3Value:", clicker3Value);
                 
                 // Remove old fish
