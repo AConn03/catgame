@@ -234,12 +234,9 @@ setInterval(() => {
         money += moneyEarnedPerSecond;
     }
 
-    // Update the money display
+    // Update both displays in the same interval
     moneyDisplay.textContent = `Money: $${money}`;
-}, 1000);
-
-    // Update the money display
-    fishCounterDisplay.textContent = `Fish: $${fishCounter}`;
+    fishCounterDisplay.textContent = `Fish: ${fishCounter}`; // Removed $ sign since it's a count
 }, 1000);
 
 setInterval(saveGame, 5000);
