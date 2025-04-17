@@ -53,6 +53,9 @@ const clicker3MaxValue = 1000;
 const clicker3LossPerSecond = 0.015;
 //18.51 hours
 
+//Count Fish
+let fishCounter = 0;
+
 function updateClock() {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
@@ -265,6 +268,7 @@ function makeDraggable(imageElement) {
             if (draggableImage2 && isOnTopOf(draggableImage, draggableImage2)) {
                 clicker3Value += fishValue;
                 clicker2Value += waterValue;
+                fishCounter += 1;
                 console.log("Fish eaten! clicker3Value:", clicker3Value);
                 
                 // Remove old fish
